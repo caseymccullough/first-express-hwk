@@ -30,6 +30,21 @@ app.get('/greeting', (req, res) => {
 app.get('/greeting/:name', (req, res) => {
    res.send(`<h1>Hello ${req.params.name}</h1>`)
 })
+
+
+
+app.get('/tip/:total/:tipPercentage', (req, res) => {
+   const total = parseFloat(req.params.total);
+   const tipPercentage = parseFloat(req.params.tipPercentage);
+
+   if (tipPercentage < 0 || tipPercentage > 100) {
+       res.send(`<h1>The percentage must be between 0.0 and 100.0</h1>`)
+   } else {
+       const tipAmount = tipPercentage * total / 100.;
+
+       res.send(`<h1>Your tip: $${Number(tipAmount).toFixed(2)}`)
+   }
+})
 // New <----- dont need this
 // Delete 
 // Update 
